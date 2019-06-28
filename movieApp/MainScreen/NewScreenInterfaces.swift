@@ -14,10 +14,19 @@ protocol NewScreenWireframeInterface: WireframeInterface {
 }
 
 protocol NewScreenViewInterface:class {
+  func showMovies(with movies:Movies)
+  
 }
 
 protocol NewScreenPresenterInterface:class {
+  func requestMovies(with category:String)
 }
 
 protocol NewScreenInteractorInterface:class{
+  func requestMovies(with category:String)
+
+}
+
+protocol NewScreenInteractorOutputDelegate:class{
+  func onMoviesFetched(with movies:Movies)
 }

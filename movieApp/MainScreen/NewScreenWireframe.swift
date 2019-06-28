@@ -14,7 +14,7 @@ final class NewScreenWireframe: BaseWireframe {
 
     // MARK: - Private properties -
 
-    private let storyboard = UIStoryboard(name: "<#NewScreen#>", bundle: nil)
+    private let storyboard = UIStoryboard(name: "MovieScreen", bundle: nil)
 
     // MARK: - Module setup -
 
@@ -23,7 +23,7 @@ final class NewScreenWireframe: BaseWireframe {
         super.init(viewController: moduleViewController)
         
         let interactor = NewScreenInteractor()
-        let presenter = NewScreenPresenter(view: moduleViewController, interactor: interactor, wireframe: self)
+      let presenter = NewScreenPresenter(view: moduleViewController, interactor: interactor, wireframe: self)
         moduleViewController.presenter = presenter
     }
 

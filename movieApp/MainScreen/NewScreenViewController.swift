@@ -14,12 +14,19 @@ final class NewScreenViewController: UIViewController {
 
     // MARK: - Public properties -
 
-    var presenter: NewScreenPresenterInterface!
+  @IBOutlet var movieSelectorOptions: [UISegmentedControl]!
+  @IBOutlet weak var moviesTable: UITableView!
+  var movies:Movies?
+  
+  
+  var presenter: NewScreenPresenterInterface!
 
     // MARK: - Lifecycle -
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        moviesTable.tableFooterView = UIView()
+       presenter.requestMovies(with: "Top Rated")
     }
 	
 }
@@ -27,4 +34,38 @@ final class NewScreenViewController: UIViewController {
 // MARK: - Extensions -
 
 extension NewScreenViewController: NewScreenViewInterface {
+  func showMovies(with movies: Movies) {
+    self.movies = movies
+    moviesTable.delegate = self
+    moviesTable.dataSource = self
+    moviesTable.reloadData()
+    
+  }
+  
+}
+
+extension NewScreenViewController:UITableViewDelegate{
+  
+}
+
+
+extension NewScreenViewController:UITableViewDataSource{
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return (movies?.results.count)!
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    if let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as? MovieTableViewCell{
+      
+      cell.setMovieInCell(with: (movies?.results[indexPath.row])!)
+      return cell
+      
+    }
+    else{
+      return UITableViewCell()
+    }
+  }
+  
+  
 }

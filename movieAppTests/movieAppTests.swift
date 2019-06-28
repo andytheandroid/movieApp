@@ -23,8 +23,7 @@ class movieAppTests: XCTestCase {
 
   func testJSONMappingToMovieObject(){
     let jsonManager = JSONManagerMock()
-    var movie = jsonManager.mapJSONFileToObject(with: "movie")
-      print(movie)
+    let movie = jsonManager.mapJSONFileToObject(with: "movie")
 
     
     
@@ -32,10 +31,8 @@ class movieAppTests: XCTestCase {
   
   func testJSONMappingForPopularMovies(){
     let jsonManager = JSONManagerMock()
-  var movie = jsonManager.mapJSONFileToObject(with: "popular")
-      print("Popular films")
-      print(movie)
-      
+    let movie = jsonManager.mapJSONFileToObject(with: "popular")
+    
     
   }
 }

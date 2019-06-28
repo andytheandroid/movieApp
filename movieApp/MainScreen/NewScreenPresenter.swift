@@ -30,4 +30,16 @@ final class NewScreenPresenter {
 // MARK: - Extensions -
 
 extension NewScreenPresenter: NewScreenPresenterInterface {
+  func requestMovies(with category: String) {
+    interactor.requestMovies(with: category)
+  }
+  
+}
+
+extension NewScreenPresenter:NewScreenInteractorOutputDelegate{
+  func onMoviesFetched(with movies: Movies) {
+    view.showMovies(with: movies)
+  }
+  
+  
 }
