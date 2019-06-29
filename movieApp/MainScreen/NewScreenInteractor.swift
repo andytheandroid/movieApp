@@ -11,7 +11,7 @@
 import Foundation
 
 final class NewScreenInteractor {
-  weak var presenterDelegate:NewScreenInteractorOutputDelegate?
+  weak static var presenterDelegate:NewScreenInteractorOutputDelegate?
 }
 
 // MARK: - Extensions -
@@ -21,7 +21,7 @@ extension NewScreenInteractor: NewScreenInteractorInterface {
     
     let apiManager = ApiManager()
     apiManager.delegate  = self
-    apiManager.getDataFromService(with: URL(string: "https://api.themoviedb.org/3/movie/popular")!, jsonInputString: "api_key=66393df0e6128ac9bcc5c318895c8f77", contentType: "", contentTypeHeader: "", method: RemoteAPIConstants.httpMethodGet)
+    apiManager.getDataFromService(with: URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=66393df0e6128ac9bcc5c318895c8f77")!, jsonInputString: "", contentType: "", contentTypeHeader: "", method: RemoteAPIConstants.httpMethodGet)
     
   }
   
@@ -33,10 +33,9 @@ extension NewScreenInteractor:APIManagerDelegate{
   }
   
   func onSucess(delegate: ApiManager, data: Data) {
-    print(data)
     if let  movies = JSONParser<Movies>().parseJSONToObject(with: data){
-      print(movies)
-      presenterDelegate?.onMoviesFetched(with: movies)
+      print(movies.results.count)
+      NewScreenInteractor.presenterDelegate?.onMoviesFetched(with: movies)
 
     }
   }

@@ -20,12 +20,12 @@ class ApiManager{
   func getDataFromService(with url:URL, jsonInputString:String? ,contentType:String = "", contentTypeHeader:String = "", method:String = "POST"){
     
     var httpRequest = URLRequest(url: url)
-    if let inputObject = jsonInputString{
-       httpRequest.httpBody = inputObject .data(using: .utf8)
-      
+    if method == "POST"{
+      if let inputBodyObject = jsonInputString{
+       httpRequest.httpBody = inputBodyObject.data(using: .utf8)
+      }
     }
     httpRequest.httpMethod = method
-    httpRequest.setValue(contentType, forHTTPHeaderField: contentTypeHeader)
     
     
     
@@ -34,6 +34,7 @@ class ApiManager{
       guard let _ = data, error == nil else {
         DispatchQueue.main.async(execute: {
         })
+        print(error)
         self.delegate?.onError(delegate: self)
         return
       }
@@ -41,6 +42,7 @@ class ApiManager{
       
       
       DispatchQueue.main.async(execute: {
+        print(response)
         if let dataToParse = data{
           self.delegate?.onSucess(delegate: self, data: dataToParse)
 

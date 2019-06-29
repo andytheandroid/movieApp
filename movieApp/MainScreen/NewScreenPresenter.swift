@@ -24,6 +24,8 @@ final class NewScreenPresenter {
         self.view = view
         self.interactor = interactor
         self.wireframe = wireframe
+        NewScreenInteractor.presenterDelegate = self
+      
     }
 }
 

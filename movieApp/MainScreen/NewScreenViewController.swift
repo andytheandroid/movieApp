@@ -25,8 +25,7 @@ final class NewScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        moviesTable.tableFooterView = UIView()
-       presenter.requestMovies(with: "Top Rated")
+          presenter.requestMovies(with: "Top Rated")
     }
 	
 }
@@ -34,6 +33,7 @@ final class NewScreenViewController: UIViewController {
 // MARK: - Extensions -
 
 extension NewScreenViewController: NewScreenViewInterface {
+ 
   func showMovies(with movies: Movies) {
     self.movies = movies
     moviesTable.delegate = self
@@ -55,7 +55,6 @@ extension NewScreenViewController:UITableViewDataSource{
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
     if let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as? MovieTableViewCell{
       
       cell.setMovieInCell(with: (movies?.results[indexPath.row])!)
