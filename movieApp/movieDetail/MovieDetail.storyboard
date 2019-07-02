@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="24i-bh-Tnu">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Movie Detail-->
+        <scene sceneID="wzT-ci-kPO">
+            <objects>
+                <viewController storyboardIdentifier="MovieDetailViewController" title="Movie Detail" id="24i-bh-Tnu" customClass="MovieDetailViewController" customModule="movieApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HzB-ac-oH2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cle-SC-uPj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MXK-MJ-VNo">
+                                <rect key="frame" x="10" y="184" width="316.5" height="77"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CNn-eB-OS5">
+                                        <rect key="frame" x="0.0" y="0.0" width="316.5" height="33"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="24"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bU-p9-WPx">
+                                        <rect key="frame" x="0.0" y="33" width="316.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="original title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Hm-K8-MEm">
+                                        <rect key="frame" x="0.0" y="53.5" width="316.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="316.5" id="w1b-o7-cVA"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5a-6L-U1o">
+                                <rect key="frame" x="10" y="20" width="46" height="30"/>
+                                <state key="normal" title="Return">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="goBack:" destination="24i-bh-Tnu" eventType="touchUpInside" id="Szq-le-2Tx"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Synopsis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLl-yV-cAd">
+                                <rect key="frame" x="12" y="304.5" width="70.5" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ih-23-2zu">
+                                <rect key="frame" x="10" y="344.5" width="356" height="302.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Votes: 1234" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPU-IS-aeu">
+                                <rect key="frame" x="250" y="277" width="108.5" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MXK-MJ-VNo" firstAttribute="top" secondItem="h5a-6L-U1o" secondAttribute="bottom" constant="134" id="013-mN-R9E"/>
+                            <constraint firstItem="h5a-6L-U1o" firstAttribute="top" secondItem="1Wn-2h-3nD" secondAttribute="top" id="3Qx-v8-8Ed"/>
+                            <constraint firstItem="iLl-yV-cAd" firstAttribute="top" secondItem="MXK-MJ-VNo" secondAttribute="bottom" constant="43.5" id="Cc6-LA-jS6"/>
+                            <constraint firstItem="6ih-23-2zu" firstAttribute="leading" secondItem="1Wn-2h-3nD" secondAttribute="leading" constant="10" id="U7e-KX-yVv"/>
+                            <constraint firstItem="iLl-yV-cAd" firstAttribute="leading" secondItem="1Wn-2h-3nD" secondAttribute="leading" constant="12" id="UjL-tG-6UU"/>
+                            <constraint firstItem="fPU-IS-aeu" firstAttribute="leading" secondItem="1Wn-2h-3nD" secondAttribute="leading" constant="250" id="Uvk-zk-m3y"/>
+                            <constraint firstItem="MXK-MJ-VNo" firstAttribute="leading" secondItem="1Wn-2h-3nD" secondAttribute="leading" constant="10" id="Uzc-Fy-s34"/>
+                            <constraint firstItem="h5a-6L-U1o" firstAttribute="leading" secondItem="1Wn-2h-3nD" secondAttribute="leading" constant="10" id="XUV-gJ-0ie"/>
+                            <constraint firstItem="6ih-23-2zu" firstAttribute="top" secondItem="iLl-yV-cAd" secondAttribute="bottom" constant="16.5" id="YkZ-xw-9LV"/>
+                            <constraint firstItem="MXK-MJ-VNo" firstAttribute="top" secondItem="cle-SC-uPj" secondAttribute="bottom" constant="20" id="dId-DF-pZn"/>
+                            <constraint firstItem="cle-SC-uPj" firstAttribute="trailing" secondItem="1Wn-2h-3nD" secondAttribute="trailing" id="ePt-cQ-X8U"/>
+                            <constraint firstItem="1Wn-2h-3nD" firstAttribute="trailing" secondItem="fPU-IS-aeu" secondAttribute="trailing" constant="16.5" id="eXv-mn-QxM"/>
+                            <constraint firstItem="cle-SC-uPj" firstAttribute="top" secondItem="HzB-ac-oH2" secondAttribute="top" id="gI8-OC-8S1"/>
+                            <constraint firstItem="fPU-IS-aeu" firstAttribute="top" secondItem="MXK-MJ-VNo" secondAttribute="bottom" constant="16" id="ill-9h-gPI"/>
+                            <constraint firstItem="MXK-MJ-VNo" firstAttribute="top" secondItem="1Wn-2h-3nD" secondAttribute="top" constant="164" id="m2L-TM-ePg"/>
+                            <constraint firstItem="1Wn-2h-3nD" firstAttribute="bottom" secondItem="6ih-23-2zu" secondAttribute="bottom" constant="20" id="qtM-cJ-AUk"/>
+                            <constraint firstItem="1Wn-2h-3nD" firstAttribute="trailing" secondItem="6ih-23-2zu" secondAttribute="trailing" constant="9" id="vA8-kZ-291"/>
+                            <constraint firstItem="cle-SC-uPj" firstAttribute="leading" secondItem="1Wn-2h-3nD" secondAttribute="leading" id="z4p-iP-ylj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1Wn-2h-3nD"/>
+                    </view>
+                    <connections>
+                        <outlet property="movieImage" destination="cle-SC-uPj" id="48H-sx-bAa"/>
+                        <outlet property="movieName" destination="CNn-eB-OS5" id="MKr-hU-xR1"/>
+                        <outlet property="movieOriginalTitle" destination="6Hm-K8-MEm" id="5DV-bC-D3l"/>
+                        <outlet property="movieYear" destination="5bU-p9-WPx" id="cdm-ll-ZTG"/>
+                        <outlet property="numberOfVotes" destination="fPU-IS-aeu" id="dzp-7A-5KW"/>
+                        <outlet property="synopsis" destination="6ih-23-2zu" id="Dcc-6x-QIc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="61j-1R-kq8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="176.80000000000001" y="296.40179910044981"/>
+        </scene>
+    </scenes>
+</document>

@@ -46,6 +46,10 @@ extension NewScreenViewController: NewScreenViewInterface {
 
 extension NewScreenViewController:UITableViewDelegate{
   
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    navigationController?.presentWireframe(MovieDetailWireframe(with: (movies?.results[indexPath.row])!))
+  }
+  
 }
 
 
