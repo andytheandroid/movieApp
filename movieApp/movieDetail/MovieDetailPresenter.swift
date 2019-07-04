@@ -25,15 +25,34 @@ final class MovieDetailPresenter {
         self.view = view
         self.interactor = interactor
         self.wireframe = wireframe
+
     }
 }
 
 // MARK: - Extensions -
 
-extension MovieDetailPresenter: MovieDetailPresenterInterface {
+extension MovieDetailPresenter: MovieDetailPresenterInterface,DownloadManagerDelegate {
+  func didDownloadImage(_: DownloadManager, data: Data) {
+   // view.presentMovieDetail(with: )
+  }
+  
+  func presentMovieCoverImage(URL: URL) {
+    interactor.presentMovieCoverImage(URL: URL)
+  }
+  
   func presentMovie() {
     view.presentMovieDetail(with: movie!)
     
   }
+  
+  
+  
+}
+
+extension MovieDetailPresenter:MovieDetailInteractorPresenterInterface{
+  func presentMovieCoverImage(data: Data) {
+    view.presentMovieCoverImage(Data: data)
+  }
+  
   
 }

@@ -1,5 +1,5 @@
 //
-//  NewScreenInterfaces.swift
+//  MovieListInterfaces.swift
 //  movieApp
 //
 //  Created by Carlos Torres Sanchez on 6/26/19.
@@ -10,23 +10,23 @@
 
 import UIKit
 
-protocol NewScreenWireframeInterface: WireframeInterface {
+protocol MovieListWireframeInterface: WireframeInterface {
 }
 
-protocol NewScreenViewInterface:class {
+protocol MovieListViewInterface:class {
   func showMovies(with movies:Movies)
   
 }
 
-protocol NewScreenPresenterInterface:class {
+protocol MovieListPresenterInterface:class {
   func requestMovies(with category:String)
 }
 
-protocol NewScreenInteractorInterface:class{
+protocol MovieListInteractorInterface:class{
   func requestMovies(with category:String)
 
 }
 
-protocol NewScreenInteractorOutputDelegate:class{
+protocol MovieListInteractorOutputDelegate:class{
   func onMoviesFetched(with movies:Movies)
 }

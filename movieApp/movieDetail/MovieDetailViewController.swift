@@ -38,17 +38,17 @@ final class MovieDetailViewController: UIViewController {
 // MARK: - Extensions -
 
 extension MovieDetailViewController: MovieDetailViewInterface {
+  func presentMovieCoverImage(Data: Data) {
+     movieImage.image = UIImage(data: Data)
+  }
+  
   func presentMovieDetail(with movie: MovieResult) {
-    
     movieName.text = movie.title
     movieYear.text = "Released: "+movie.release_date
     movieOriginalTitle.text = "Original Title: "+movie.original_title
     synopsis.text = movie.overview
     numberOfVotes.text = "Votes: " + movie.vote_count.description
-    let download = DownloadManager()
-    download.delegate = self
-    download.startDownload(from: URL(string:"https://image.tmdb.org/t/p/w500/"+movie.poster_path)!)
-    
+    presenter.presentMovieCoverImage(URL:  URL(string:"https://image.tmdb.org/t/p/w500/"+movie.poster_path)!)
   }
   
   

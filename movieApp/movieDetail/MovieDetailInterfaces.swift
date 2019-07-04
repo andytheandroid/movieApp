@@ -15,12 +15,23 @@ protocol MovieDetailWireframeInterface: WireframeInterface {
 
 protocol MovieDetailViewInterface:class {
   func presentMovieDetail(with movie:MovieResult)
+  func presentMovieCoverImage(Data:Data)
+
 }
 
 protocol MovieDetailPresenterInterface:class{
   
   func presentMovie()
+  func presentMovieCoverImage(URL:URL)
 }
 
 protocol MovieDetailInteractorInterface:class{
+  func presentMovieCoverImage(URL:URL)
 }
+
+protocol MovieDetailInteractorPresenterInterface:class{
+
+  func presentMovieCoverImage(data:Data)
+  
+}
+

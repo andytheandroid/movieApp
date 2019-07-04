@@ -34,7 +34,6 @@ class ApiManager{
       guard let _ = data, error == nil else {
         DispatchQueue.main.async(execute: {
         })
-        print(error)
         self.delegate?.onError(delegate: self)
         return
       }
@@ -42,7 +41,6 @@ class ApiManager{
       
       
       DispatchQueue.main.async(execute: {
-        print(response)
         if let dataToParse = data{
           self.delegate?.onSucess(delegate: self, data: dataToParse)
 

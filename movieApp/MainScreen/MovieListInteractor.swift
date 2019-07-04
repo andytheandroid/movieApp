@@ -1,5 +1,5 @@
 //
-//  NewScreenInteractor.swift
+//  MovieListInteractor.swift
 //  movieApp
 //
 //  Created by Carlos Torres Sanchez on 6/26/19.
@@ -10,13 +10,13 @@
 
 import Foundation
 
-final class NewScreenInteractor {
-  weak static var presenterDelegate:NewScreenInteractorOutputDelegate?
+final class MovieListInteractor {
+  weak static var presenterDelegate:MovieListInteractorOutputDelegate?
 }
 
 // MARK: - Extensions -
 
-extension NewScreenInteractor: NewScreenInteractorInterface {
+extension MovieListInteractor: MovieListInteractorInterface {
   func requestMovies(with category: String) {
     
     let apiManager = ApiManager()
@@ -27,7 +27,7 @@ extension NewScreenInteractor: NewScreenInteractorInterface {
   
 }
 
-extension NewScreenInteractor:APIManagerDelegate{
+extension MovieListInteractor:APIManagerDelegate{
   func onError(delegate: ApiManager) {
     
   }
@@ -35,7 +35,7 @@ extension NewScreenInteractor:APIManagerDelegate{
   func onSucess(delegate: ApiManager, data: Data) {
     if let  movies = JSONParser<Movies>().parseJSONToObject(with: data){
       print(movies.results.count)
-      NewScreenInteractor.presenterDelegate?.onMoviesFetched(with: movies)
+      MovieListInteractor.presenterDelegate?.onMoviesFetched(with: movies)
 
     }
   }

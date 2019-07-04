@@ -1,5 +1,5 @@
 //
-//  NewScreenPresenter.swift
+//  MovieListPresenter.swift
 //  movieApp
 //
 //  Created by Carlos Torres Sanchez on 6/26/19.
@@ -10,35 +10,35 @@
 
 import UIKit
 
-final class NewScreenPresenter {
+final class MovieListPresenter {
 
     // MARK: - Private properties -
 
-    private unowned let view: NewScreenViewInterface
-    private let interactor: NewScreenInteractorInterface
-    private let wireframe: NewScreenWireframeInterface
+    private unowned let view: MovieListViewInterface
+    private let interactor: MovieListInteractorInterface
+    private let wireframe: MovieListWireframeInterface
 
     // MARK: - Lifecycle -
 
-    init(view: NewScreenViewInterface, interactor: NewScreenInteractorInterface, wireframe: NewScreenWireframeInterface) {
+    init(view: MovieListViewInterface, interactor: MovieListInteractorInterface, wireframe: MovieListWireframeInterface) {
         self.view = view
         self.interactor = interactor
         self.wireframe = wireframe
-        NewScreenInteractor.presenterDelegate = self
+        MovieListInteractor.presenterDelegate = self
       
     }
 }
 
 // MARK: - Extensions -
 
-extension NewScreenPresenter: NewScreenPresenterInterface {
+extension MovieListPresenter: MovieListPresenterInterface {
   func requestMovies(with category: String) {
     interactor.requestMovies(with: category)
   }
   
 }
 
-extension NewScreenPresenter:NewScreenInteractorOutputDelegate{
+extension MovieListPresenter:MovieListInteractorOutputDelegate{
   func onMoviesFetched(with movies: Movies) {
     view.showMovies(with: movies)
   }

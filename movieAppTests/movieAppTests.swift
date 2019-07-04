@@ -22,16 +22,16 @@ class movieAppTests: XCTestCase {
     }
 
   func testJSONMappingToMovieObject(){
-    let jsonManager = JSONManagerMock()
-    let movie = jsonManager.mapJSONFileToObject(with: "movie")
+   // let jsonManager = JSONManagerMock()
+    //let movie = jsonManager.mapJSONFileToObject(with: "movie")
 
     
     
   }
   
   func testJSONMappingForPopularMovies(){
-    let jsonManager = JSONManagerMock()
-    let movie = jsonManager.mapJSONFileToObject(with: "popular")
+   // let jsonManager = JSONManagerMock()
+   // let movie = jsonManager.mapJSONFileToObject(with: "popular")
     
     
   }

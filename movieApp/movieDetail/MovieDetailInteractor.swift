@@ -11,9 +11,25 @@
 import Foundation
 
 final class MovieDetailInteractor {
+  var presenter:MovieDetailInteractorPresenterInterface?
 }
 
 // MARK: - Extensions -
 
 extension MovieDetailInteractor: MovieDetailInteractorInterface {
+ 
+  
+  func presentMovieCoverImage(URL: URL) {
+    let download = DownloadManager()
+    download.delegate = self
+    download.startDownload(from: URL)
+  }
+  
+}
+extension MovieDetailInteractor:DownloadManagerDelegate{
+  func didDownloadImage(_: DownloadManager, data: Data) {
+    presenter?.presentMovieCoverImage(data: data)
+  }
+  
+  
 }

@@ -25,6 +25,7 @@ final class MovieDetailWireframe: BaseWireframe {
         let interactor = MovieDetailInteractor()
         let presenter = MovieDetailPresenter(view: moduleViewController, interactor: interactor, wireframe: self)
         moduleViewController.presenter = presenter
+        interactor.presenter = presenter
         presenter.movie = movie
     }
 

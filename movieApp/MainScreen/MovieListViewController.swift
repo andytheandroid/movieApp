@@ -1,5 +1,5 @@
 //
-//  NewScreenViewController.swift
+//  MovieListViewController.swift
 //  movieApp
 //
 //  Created by Carlos Torres Sanchez on 6/26/19.
@@ -10,7 +10,7 @@
 
 import UIKit
 
-final class NewScreenViewController: UIViewController {
+final class MovieListViewController: UIViewController {
 
     // MARK: - Public properties -
 
@@ -19,7 +19,7 @@ final class NewScreenViewController: UIViewController {
   var movies:Movies?
   
   
-  var presenter: NewScreenPresenterInterface!
+  var presenter: MovieListPresenterInterface!
 
     // MARK: - Lifecycle -
 
@@ -32,7 +32,7 @@ final class NewScreenViewController: UIViewController {
 
 // MARK: - Extensions -
 
-extension NewScreenViewController: NewScreenViewInterface {
+extension MovieListViewController: MovieListViewInterface {
  
   func showMovies(with movies: Movies) {
     self.movies = movies
@@ -44,16 +44,16 @@ extension NewScreenViewController: NewScreenViewInterface {
   
 }
 
-extension NewScreenViewController:UITableViewDelegate{
+extension MovieListViewController:UITableViewDelegate{
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    navigationController?.presentWireframe(MovieDetailWireframe(with: (movies?.results[indexPath.row])!))
+    navigationController?.pushWireframe(MovieDetailWireframe(with: (movies?.results[indexPath.row])!))
   }
   
 }
 
 
-extension NewScreenViewController:UITableViewDataSource{
+extension MovieListViewController:UITableViewDataSource{
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return (movies?.results.count)!
   }
