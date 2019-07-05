@@ -14,9 +14,12 @@ final class MovieListViewController: UIViewController {
 
     // MARK: - Public properties -
 
+  @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet var movieSelectorOptions: [UISegmentedControl]!
   @IBOutlet weak var moviesTable: UITableView!
   var movies:Movies?
+  var filteredMovies = [MovieResult]()
+  var searchBarController:UISearchController?
   
   
   var presenter: MovieListPresenterInterface!
@@ -25,8 +28,32 @@ final class MovieListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-          presenter.requestMovies(with: "Top Rated")
-    }
+        presenter.requestMovies(with: "popular")
+     }
+  
+  @IBAction func searchMovies(_ sender: Any) {
+    searchBarController?.hidesNavigationBarDuringPresentation = false
+    searchBarController?.searchBar.placeholder = "Find Movies"
+    searchBarController?.searchBar.scopeButtonTitles = ["Popular","Top Rated", "Upcoming"]
+    searchBarController?.obscuresBackgroundDuringPresentation = false
+    searchBarController?.searchBar.keyboardType = UIKeyboardType.asciiCapable
+    searchBarController?.searchResultsUpdater = self
+    self.searchBarController?.searchBar.delegate = self
+    present(searchBarController!, animated: true, completion: nil)
+
+  }
+  
+  func searchBarIsEmpty() -> Bool {
+    return searchBarController?.searchBar.text?.isEmpty ?? true
+  }
+  
+  func filterContentForSearchText(_ searchText: String, scope: String = "Upcoming") {
+   filteredMovies = (movies?.results.filter({( movie : MovieResult) -> Bool in
+     return movie.title.contains(searchText)
+   }))!
+    moviesTable.reloadData()
+    
+  }
 	
 }
 
@@ -38,8 +65,12 @@ extension MovieListViewController: MovieListViewInterface {
     self.movies = movies
     moviesTable.delegate = self
     moviesTable.dataSource = self
+    searchBarController = UISearchController(searchResultsController: nil)
     moviesTable.reloadData()
     
+  }
+  func isFiltering() -> Bool {
+    return (searchBarController?.isActive)! && !searchBarIsEmpty()
   }
   
 }
@@ -47,7 +78,14 @@ extension MovieListViewController: MovieListViewInterface {
 extension MovieListViewController:UITableViewDelegate{
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    navigationController?.pushWireframe(MovieDetailWireframe(with: (movies?.results[indexPath.row])!))
+    if isFiltering(){
+      navigationController?.pushWireframe(MovieDetailWireframe(with: (filteredMovies[indexPath.row])))
+      searchBarController?.isActive = false
+
+    }
+    else{
+      navigationController?.pushWireframe(MovieDetailWireframe(with: (movies?.results[indexPath.row])!))
+    }
   }
   
 }
@@ -55,13 +93,25 @@ extension MovieListViewController:UITableViewDelegate{
 
 extension MovieListViewController:UITableViewDataSource{
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    if isFiltering(){
+      return filteredMovies.count
+    }
+    else{
     return (movies?.results.count)!
+    }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as? MovieTableViewCell{
       
+      if isFiltering(){
+        cell.setMovieInCell(with: (filteredMovies[indexPath.row]))
+        
+
+      }else{
       cell.setMovieInCell(with: (movies?.results[indexPath.row])!)
+      }
       return cell
       
     }
@@ -70,5 +120,25 @@ extension MovieListViewController:UITableViewDataSource{
     }
   }
   
+  
+  
+  
+}
+
+
+extension MovieListViewController:UISearchResultsUpdating{
+  func updateSearchResults(for searchController: UISearchController) {
+    let scopeIndex = searchController.searchBar.selectedScopeButtonIndex
+    filterContentForSearchText(searchController.searchBar.text!,scope: (searchController.searchBar.scopeButtonTitles![scopeIndex]))
+  }
+  
+  
+}
+
+extension MovieListViewController:UISearchBarDelegate{
+  
+ func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
+  searchBarController?.isActive = false
+  }
   
 }

@@ -21,7 +21,7 @@ extension MovieListInteractor: MovieListInteractorInterface {
     
     let apiManager = ApiManager()
     apiManager.delegate  = self
-    apiManager.getDataFromService(with: URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=66393df0e6128ac9bcc5c318895c8f77")!, jsonInputString: "", contentType: "", contentTypeHeader: "", method: RemoteAPIConstants.httpMethodGet)
+    apiManager.getDataFromService(with: URL(string: "https://api.themoviedb.org/3/movie/\(category)?api_key=66393df0e6128ac9bcc5c318895c8f77")!, jsonInputString: "", contentType: "", contentTypeHeader: "", method: RemoteAPIConstants.httpMethodGet)
     
   }
   

@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nGQ-7R-t0G">
-                                <rect key="frame" x="0.0" y="146" width="375" height="521"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" delaysContentTouches="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nGQ-7R-t0G">
+                                <rect key="frame" x="0.0" y="59" width="375" height="608"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="movieCell" rowHeight="131" id="fqf-9T-kSG" customClass="MovieTableViewCell" customModule="movieApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="movieCell" rowHeight="131" id="fqf-9T-kSG" customClass="MovieTableViewCell" customModule="movieApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="131"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fqf-9T-kSG" id="yGU-Jt-zC7">
@@ -74,43 +74,45 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9l-eI-Qpe">
-                                <rect key="frame" x="16" y="64" width="343" height="36"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CBj-84-ycm">
-                                <rect key="frame" x="16" y="108" width="343" height="29"/>
-                                <segments>
-                                    <segment title="Top Rated"/>
-                                    <segment title="Upcoming"/>
-                                    <segment title="Popular"/>
-                                </segments>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="CBj-84-ycm" firstAttribute="leading" secondItem="bcK-AF-1Mt" secondAttribute="leading" constant="16" id="Ggd-3Z-52l"/>
-                            <constraint firstItem="t9l-eI-Qpe" firstAttribute="top" secondItem="bcK-AF-1Mt" secondAttribute="top" id="HQB-gX-7H9"/>
-                            <constraint firstItem="nGQ-7R-t0G" firstAttribute="top" secondItem="CBj-84-ycm" secondAttribute="bottom" constant="10" id="KeE-4V-lB5"/>
                             <constraint firstItem="nGQ-7R-t0G" firstAttribute="trailing" secondItem="bcK-AF-1Mt" secondAttribute="trailing" id="Ltj-YE-7fv"/>
                             <constraint firstItem="nGQ-7R-t0G" firstAttribute="bottom" secondItem="bcK-AF-1Mt" secondAttribute="bottom" id="N2S-Ad-6JP"/>
-                            <constraint firstItem="bcK-AF-1Mt" firstAttribute="trailing" secondItem="t9l-eI-Qpe" secondAttribute="trailing" constant="16" id="T1M-aZ-ZbC"/>
-                            <constraint firstItem="t9l-eI-Qpe" firstAttribute="leading" secondItem="bcK-AF-1Mt" secondAttribute="leading" constant="16" id="UIH-v1-hCQ"/>
-                            <constraint firstItem="CBj-84-ycm" firstAttribute="top" secondItem="t9l-eI-Qpe" secondAttribute="bottom" constant="8" id="fLj-Se-zLI"/>
-                            <constraint firstItem="bcK-AF-1Mt" firstAttribute="trailing" secondItem="CBj-84-ycm" secondAttribute="trailing" constant="16" id="uhf-l3-chP"/>
+                            <constraint firstItem="nGQ-7R-t0G" firstAttribute="top" secondItem="bcK-AF-1Mt" secondAttribute="top" constant="-5" id="P58-b8-GK4"/>
                             <constraint firstItem="nGQ-7R-t0G" firstAttribute="leading" secondItem="bcK-AF-1Mt" secondAttribute="leading" id="vlp-OC-Cjm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bcK-AF-1Mt"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Movies" largeTitleDisplayMode="always" id="I7y-vV-gRE"/>
+                    <navigationItem key="navigationItem" title="Movies" largeTitleDisplayMode="always" id="I7y-vV-gRE">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="2mI-2y-U0a">
+                            <connections>
+                                <action selector="searchMovies:" destination="0RH-Th-i1k" id="Evb-qc-yjU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="moviesTable" destination="nGQ-7R-t0G" id="kHs-Qo-w3V"/>
-                        <outletCollection property="movieSelectorOptions" destination="CBj-84-ycm" collectionClass="NSMutableArray" id="Ebv-W0-Qsj"/>
+                        <outlet property="searchDisplayController" destination="wN0-65-k8N" id="bP9-yI-srV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tGW-b3-gXa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="TBM-as-pMC">
+                    <connections>
+                        <outlet property="delegate" destination="0RH-Th-i1k" id="GIb-xc-5q1"/>
+                        <outlet property="searchContentsController" destination="0RH-Th-i1k" id="wz7-9i-Uo6"/>
+                        <outlet property="searchResultsDataSource" destination="0RH-Th-i1k" id="T7D-jM-rLM"/>
+                        <outlet property="searchResultsDelegate" destination="0RH-Th-i1k" id="gax-H9-nid"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="wN0-65-k8N">
+                    <connections>
+                        <outlet property="delegate" destination="0RH-Th-i1k" id="67W-AL-dEd"/>
+                        <outlet property="searchContentsController" destination="0RH-Th-i1k" id="HZe-No-GBP"/>
+                        <outlet property="searchResultsDataSource" destination="0RH-Th-i1k" id="Yct-nM-0nt"/>
+                        <outlet property="searchResultsDelegate" destination="0RH-Th-i1k" id="pRd-fm-Rik"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1268" y="170.46476761619192"/>
         </scene>
