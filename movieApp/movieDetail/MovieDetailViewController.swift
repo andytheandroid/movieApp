@@ -18,21 +18,20 @@ final class MovieDetailViewController: UIViewController {
   @IBOutlet weak var movieYear: UILabel!
   @IBOutlet weak var movieName: UILabel!
   @IBOutlet weak var synopsis: UITextView!
-  // MARK: - Public properties -
 
-    var presenter: MovieDetailPresenterInterface!
+  var presenter: MovieDetailPresenterInterface!
 
-    // MARK: - Lifecycle -
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        presenter.presentMovie()
+  override func viewDidLoad() {
+      super.viewDidLoad()
+      movieImage.image = UIImage(named: "placeholderimage")
+    presenter.presentMovie()
     }
 	
   @IBAction func goBack(_ sender: Any) {
-    
-        self.dismiss(animated: true, completion: nil)
+    self.dismiss(animated: true, completion: nil)
   }
+  
 }
 
 // MARK: - Extensions -

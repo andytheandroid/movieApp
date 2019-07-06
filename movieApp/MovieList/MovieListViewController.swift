@@ -13,7 +13,7 @@ import UIKit
 final class MovieListViewController: UIViewController {
 
     // MARK: - Public properties -
-
+  @IBOutlet weak var searchButton: UIBarButtonItem!
   @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet var movieSelectorOptions: [UISegmentedControl]!
   @IBOutlet weak var moviesTable: UITableView!
@@ -48,7 +48,9 @@ final class MovieListViewController: UIViewController {
   }
   
   func filterContentForSearchText(_ searchText: String, scope: String = "Upcoming") {
-   filteredMovies = (movies?.results.filter({( movie : MovieResult) -> Bool in
+  
+    
+  filteredMovies = (movies?.results.filter({( movie : MovieResult) -> Bool in
      return movie.title.contains(searchText)
    }))!
     moviesTable.reloadData()
@@ -63,6 +65,7 @@ extension MovieListViewController: MovieListViewInterface {
  
   func showMovies(with movies: Movies) {
     self.movies = movies
+    searchButton.isEnabled = true
     moviesTable.delegate = self
     moviesTable.dataSource = self
     searchBarController = UISearchController(searchResultsController: nil)
@@ -129,7 +132,9 @@ extension MovieListViewController:UITableViewDataSource{
 extension MovieListViewController:UISearchResultsUpdating{
   func updateSearchResults(for searchController: UISearchController) {
     let scopeIndex = searchController.searchBar.selectedScopeButtonIndex
-    filterContentForSearchText(searchController.searchBar.text!,scope: (searchController.searchBar.scopeButtonTitles![scopeIndex]))
+    
+    presenter.requestMoviesByScopeIndex(index: scopeIndex)
+    
   }
   
   
@@ -140,5 +145,7 @@ extension MovieListViewController:UISearchBarDelegate{
  func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
   searchBarController?.isActive = false
   }
+  
+  
   
 }

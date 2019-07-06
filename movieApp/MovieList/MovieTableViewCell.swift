@@ -21,9 +21,10 @@ class MovieTableViewCell: UITableViewCell {
     }
   
   func setMovieInCell(with movie:MovieResult){
-    let downloadManager = DownloadManager()
-   downloadManager.delegate = self
-    downloadManager.startDownload(from: URL(string: "https://image.tmdb.org/t/p/w200/"+movie.poster_path)!)
+    movieImage.image = UIImage(named: "placeholderimage")
+     let downloadManager = DownloadManager()
+     downloadManager.delegate = self
+     downloadManager.startDownload(from: URL(string: "https://image.tmdb.org/t/p/w200/"+movie.poster_path)!)
     movieName.text = movie.title
     releaseDate.text = movie.release_date
     

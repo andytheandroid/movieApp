@@ -32,6 +32,24 @@ final class MovieListPresenter {
 // MARK: - Extensions -
 
 extension MovieListPresenter: MovieListPresenterInterface {
+  func requestMoviesByScopeIndex(index: Int) {
+    switch index {
+    case MovieCategoryConstants.popular:
+      interactor.requestMovies(with: "popular")
+      break
+    case MovieCategoryConstants.topRated:
+      interactor.requestMovies(with: "top_rated")
+      break
+    case MovieCategoryConstants.upcoming:
+      interactor.requestMovies(with: "upcoming")
+      break
+    default:
+      break
+      
+    }
+    
+  }
+  
   func requestMovies(with category: String) {
     interactor.requestMovies(with: category)
   }

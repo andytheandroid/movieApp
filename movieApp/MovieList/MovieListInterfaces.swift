@@ -20,6 +20,7 @@ protocol MovieListViewInterface:class {
 
 protocol MovieListPresenterInterface:class {
   func requestMovies(with category:String)
+  func requestMoviesByScopeIndex(index:Int)
 }
 
 protocol MovieListInteractorInterface:class{
