@@ -19,6 +19,7 @@ final class MovieListViewController: UIViewController {
   @IBOutlet weak var moviesTable: UITableView!
   var movies:Movies?
   var filteredMovies = [MovieResult]()
+  var scopeTitles = ["Popular","Top Rated", "Upcoming"]
   var searchBarController:UISearchController?
   
   
@@ -34,7 +35,7 @@ final class MovieListViewController: UIViewController {
   @IBAction func searchMovies(_ sender: Any) {
     searchBarController?.hidesNavigationBarDuringPresentation = false
     searchBarController?.searchBar.placeholder = "Find Movies"
-    searchBarController?.searchBar.scopeButtonTitles = ["Popular","Top Rated", "Upcoming"]
+    searchBarController?.searchBar.scopeButtonTitles = scopeTitles
     searchBarController?.obscuresBackgroundDuringPresentation = false
     searchBarController?.searchBar.keyboardType = UIKeyboardType.asciiCapable
     searchBarController?.searchResultsUpdater = self
@@ -49,8 +50,8 @@ final class MovieListViewController: UIViewController {
   
   func filterContentForSearchText(_ searchText: String, scope: String = "Upcoming") {
   
-    
-  filteredMovies = (movies?.results.filter({( movie : MovieResult) -> Bool in
+    self.title = scope
+    filteredMovies = (movies?.results.filter({( movie : MovieResult) -> Bool in
      return movie.title.contains(searchText)
    }))!
     moviesTable.reloadData()
@@ -132,8 +133,9 @@ extension MovieListViewController:UITableViewDataSource{
 extension MovieListViewController:UISearchResultsUpdating{
   func updateSearchResults(for searchController: UISearchController) {
     let scopeIndex = searchController.searchBar.selectedScopeButtonIndex
+
+    self.filterContentForSearchText(searchController.searchBar.text!, scope: scopeTitles[scopeIndex] )
     
-    presenter.requestMoviesByScopeIndex(index: scopeIndex)
     
   }
   
