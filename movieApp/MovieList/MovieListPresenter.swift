@@ -32,6 +32,7 @@ final class MovieListPresenter {
 // MARK: - Extensions -
 
 extension MovieListPresenter: MovieListPresenterInterface {
+ 
   func requestMoviesByScopeIndex(index: Int) {
     switch index {
     case MovieCategoryConstants.popular:

@@ -17,7 +17,6 @@ class JSONParser<RESULT: Codable>{
       result = try JSONDecoder().decode(RESULT.self, from: data)
     }catch {
     }
-    print(result)
     return result
     
   }

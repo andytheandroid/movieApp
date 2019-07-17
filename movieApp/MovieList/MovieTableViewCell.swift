@@ -26,7 +26,7 @@ class MovieTableViewCell: UITableViewCell {
      downloadManager.delegate = self
      downloadManager.startDownload(from: URL(string: "https://image.tmdb.org/t/p/w200/"+movie.poster_path)!)
     movieName.text = movie.title
-    releaseDate.text = movie.release_date
+    releaseDate.text = "Year: " + movie.release_date.components(separatedBy: "-")[0]
     
     
     

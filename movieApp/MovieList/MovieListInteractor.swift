@@ -34,7 +34,6 @@ extension MovieListInteractor:APIManagerDelegate{
   
   func onSucess(delegate: ApiManager, data: Data) {
     if let  movies = JSONParser<Movies>().parseJSONToObject(with: data){
-      print(movies.results.count)
       MovieListInteractor.presenterDelegate?.onMoviesFetched(with: movies)
 
     }

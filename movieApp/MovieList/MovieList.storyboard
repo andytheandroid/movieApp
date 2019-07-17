@@ -85,6 +85,11 @@
                         <viewLayoutGuide key="safeArea" id="bcK-AF-1Mt"/>
                     </view>
                     <navigationItem key="navigationItem" title="Movies" largeTitleDisplayMode="always" id="I7y-vV-gRE">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="refresh" id="bgm-8y-nvU">
+                            <connections>
+                                <action selector="refreshBtnPress:" destination="0RH-Th-i1k" id="d01-yr-qMa"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" style="plain" systemItem="search" id="2mI-2y-U0a">
                             <connections>
                                 <action selector="searchMovies:" destination="0RH-Th-i1k" id="Evb-qc-yjU"/>

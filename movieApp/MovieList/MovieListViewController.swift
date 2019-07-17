@@ -21,6 +21,7 @@ final class MovieListViewController: UIViewController {
   var filteredMovies = [MovieResult]()
   var scopeTitles = ["Popular","Top Rated", "Upcoming"]
   var searchBarController:UISearchController?
+  var isSearching = false
   
   
   var presenter: MovieListPresenterInterface!
@@ -29,10 +30,21 @@ final class MovieListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title  = "Popular"
         presenter.requestMovies(with: "popular")
-     }
+    }
+  
+  
+  
+  
+  func isFiltering() ->Bool{
+    print("Is filtering output")
+    return searchBarController?.searchBar.text?.isEmpty == false && searchBarController?.isActive == true
+  }
+  
   
   @IBAction func searchMovies(_ sender: Any) {
+    searchBarController = UISearchController(searchResultsController: nil)
     searchBarController?.hidesNavigationBarDuringPresentation = false
     searchBarController?.searchBar.placeholder = "Find Movies"
     searchBarController?.searchBar.scopeButtonTitles = scopeTitles
@@ -44,15 +56,19 @@ final class MovieListViewController: UIViewController {
 
   }
   
-  func searchBarIsEmpty() -> Bool {
-    return searchBarController?.searchBar.text?.isEmpty ?? true
+  @IBAction func refreshBtnPress(_ sender: Any) {
+    self.title  = "Popular"
+    presenter.requestMovies(with: "popular")
   }
   
-  func filterContentForSearchText(_ searchText: String, scope: String = "Upcoming") {
   
-    self.title = scope
+  
+  
+  func filterContentForSearchText(_ searchText: String) {
+  
+    self.title = "Search Results"
     filteredMovies = (movies?.results.filter({( movie : MovieResult) -> Bool in
-     return movie.title.contains(searchText)
+     return movie.title.lowercased().contains(searchText.lowercased())
    }))!
     moviesTable.reloadData()
     
@@ -69,26 +85,24 @@ extension MovieListViewController: MovieListViewInterface {
     searchButton.isEnabled = true
     moviesTable.delegate = self
     moviesTable.dataSource = self
-    searchBarController = UISearchController(searchResultsController: nil)
     moviesTable.reloadData()
     
   }
-  func isFiltering() -> Bool {
-    return (searchBarController?.isActive)! && !searchBarIsEmpty()
-  }
+ 
   
 }
 
 extension MovieListViewController:UITableViewDelegate{
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if isFiltering(){
+    if isFiltering() {
       navigationController?.pushWireframe(MovieDetailWireframe(with: (filteredMovies[indexPath.row])))
-      searchBarController?.isActive = false
+      searchBarController?.dismiss(animated: true, completion: nil)
 
     }
     else{
       navigationController?.pushWireframe(MovieDetailWireframe(with: (movies?.results[indexPath.row])!))
+
     }
   }
   
@@ -110,9 +124,8 @@ extension MovieListViewController:UITableViewDataSource{
     if let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as? MovieTableViewCell{
       
       if isFiltering(){
+        print(filteredMovies[indexPath.row])
         cell.setMovieInCell(with: (filteredMovies[indexPath.row]))
-        
-
       }else{
       cell.setMovieInCell(with: (movies?.results[indexPath.row])!)
       }
@@ -132,10 +145,7 @@ extension MovieListViewController:UITableViewDataSource{
 
 extension MovieListViewController:UISearchResultsUpdating{
   func updateSearchResults(for searchController: UISearchController) {
-    let scopeIndex = searchController.searchBar.selectedScopeButtonIndex
-
-    self.filterContentForSearchText(searchController.searchBar.text!, scope: scopeTitles[scopeIndex] )
-    
+    self.filterContentForSearchText(searchController.searchBar.text!)
     
   }
   
@@ -146,8 +156,13 @@ extension MovieListViewController:UISearchBarDelegate{
   
  func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
   searchBarController?.isActive = false
-  }
+  searchBarController?.searchBar.text = ""
+}
   
+  func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    presenter.requestMoviesByScopeIndex(index: selectedScope)
+    
+  }
   
   
 }
